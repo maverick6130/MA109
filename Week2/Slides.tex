@@ -1,0 +1,352 @@
+\documentclass[handout,aspectratio=169]{beamer}
+
+\usepackage{amsmath, amsthm, amssymb, esint}
+\usetheme{CambridgeUS}
+\usecolortheme{seahorse}
+
+\title{Tutorial Session}
+\subtitle{Week 2}
+\author{Dhruv Arora}
+\institute{Sphomore, Dept of CSE}
+\date{\today}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{df}{Definition}
+\newtheorem{qsn}{Question}
+
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bR}{\mathbb{R}}
+
+\begin{document}
+
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{What's New this Wednesday}
+\tableofcontents
+\end{frame}
+
+\section{Tutorial Sheet 1}
+
+\begin{frame}
+\frametitle{Tutorial Sheet 1}
+\pause
+AHH SHIT, HERE WE GO AGAIN!
+\end{frame}
+
+\subsection{Q13. (ii) : Continuity}
+
+\begin{frame}
+\frametitle{Q13. (ii)}
+\pause
+\begin{qsn}
+Discuss the continuity of $f : \bR \to \bR$ given by
+$$f(x) = 
+\begin{cases}
+x \sin (1/x) & x\neq 0\\
+0 & x=0
+\end{cases}$$
+\end{qsn}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q13. (ii)}
+\textbf{Claim} : $f$ is continuous on $\bR$
+\pause
+\begin{proof}
+Consider any $y\neq 0$, $1/x$ is a rational function, hence continuous at $y$. $\sin$ is continuous on $\bR$, so $\sin(1/x)$ is continuous at $y$ since this is a composition. Similarly, $x$ is continuous on $\bR$, so $x$ is continuous at $y$. Product of 2 continous functions is continuous, showing $f$ is continuous at all $y\neq 0$.\\[1mm] \pause
+All we need to show is that $f$ is continuous at $0$.\\ \pause
+Note that $|f(x)-f(0)| = |x\sin(1/x)| \leq |x|$\\ \pause
+Given any $\epsilon>0$, chose $\delta = \epsilon$.\\ \pause
+$|x-0|<\delta \implies |f(x)-f(0)| \leq |x| < \delta = \epsilon$.\\
+This shows $f$ is continuous at 0 and the proof is completed.
+\end{proof}
+\end{frame}
+
+\subsection{Q15 : Differentiability}
+
+\begin{frame}
+\frametitle{Q15}
+\pause
+\begin{qsn}
+Show that the function $f : \bR \to \bR$ given by
+$$f(x) = 
+\begin{cases}
+x^2 \sin (1/x) & x\neq 0\\
+0 & x=0
+\end{cases}$$
+is differentiable on $\bR$. Comment on the continuity of $f'$.
+\end{qsn}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q15}
+First we show $f$ is differentiable on $\bR$.
+\pause
+\begin{proof}
+Consider any $y\neq 0$, $1/x$ is a rational function, hence differentiable at $y$. $\sin$ is continuous on $\bR$, so $\sin(1/x)$ is differentiable at $y$ since this is a composition. Similarly, $x^2$ is differentiable on $\bR$, so $x$ is differentiable at $y$. Product of 2 differentiable functions is differentiable, showing $f$ is differentiable at all $y\neq 0$.\\[1mm] \pause
+All we need to show is that $f$ is differentiable at $0$.\\ \pause
+We claim $f'(0) = 0$. The proof follows as :\\ \pause
+Note that $\frac{f(x)-f(0)}{x-0} = \frac{x^2\sin(1/x)}{x} = x\sin(1/x)$\\ \pause
+By the same argument as in last question, $\lim\limits_{x\to 0} \frac{f(x)-f(0)}{x-0} = \lim\limits_{x\to 0} x\sin(1/x) = 0$.
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q15}
+\textbf{Claim} : $f'$ is continuous on $\bR\setminus \{0\}$ and discontinuous at 0
+\pause
+\begin{proof}
+For $x\neq 0$, we simply use the chain rule to obtain $f'$.\\ \pause
+$$f'(x) = \begin{cases}
+-\cos(1/x) + 2x\sin(1/x) & x\neq 0\\
+0 & x=0
+\end{cases}
+$$
+\pause
+$f'$ is continuous on $\bR \setminus \{0\}$ (why?) \\ \pause
+For the purpose of contradiction, assume $f'$ is continuous at 0.\\ \pause
+We proved $x\sin(1/x)$ is continuous on $\bR$, hence at 0.\\ \pause
+We obtain $\lim\limits_{x\to 0} f'(x) = \lim\limits_{x\to 0} \cos(1/x) = 0$. \\ \pause
+This is a contradiction (why?) and thus our claim is proven.
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Explanation}
+\begin{qsn}
+Show that the limit $\lim\limits_{x\to 0} \cos(1/x)$ does not exist.
+\end{qsn}
+\begin{proof}
+We use the sequence definition of limits. Consider the sequence $\{a_n\}$ formed as $a_n = \frac{1}{n\pi}$. It is easy to verify $a_n \to 0$ and $\forall n \in \bN$, $a_n \neq 0$.\\
+Consider the sequence $\cos(1/a_n) = cos(n\pi) = (-1)^n$\\
+This shows that the limit does not exist, as if it did, the sequences should have converged to the limit. Since the sequence diverges, this would form a contradiction.
+\end{proof}
+\end{frame}
+
+\subsection{Q18 : Functional Equations}
+
+\begin{frame}
+\pause
+\frametitle{Q18}
+\begin{qsn}
+Let $f : \bR \to \bR$ satisfy $f(x+y) = f(x)f(y) \,\forall x,y \in \bR$. If $f$ is differentiable at 0, show that $f$ is differentiable on $\bR$ and $f'(c) = f(c)f'(0)$.
+\end{qsn}
+\end{frame}
+
+\begin{frame}
+\pause
+\frametitle{Q18}
+\begin{proof}
+Put $x=y=0$ in the functional equation. \\ \pause
+$f(0) = f^2(0) \implies f(0) \in \{0,1\}$ \\ \pause
+Case 1 $f(0) = 0$ shows $f(x) = 0 \,\forall x \in \bR$ (why?).\\ \pause
+This satisfies the hypothesis (verify!) \\ \pause
+The other case is $f(0) = 1$. We are given $\lim\limits_{h\to 0} \frac{f(h) - f(0)}{h-0} = \lim\limits_{h\to 0} \frac{f(h)-1}{h}$ exists and $=f'(0)$. \\ \pause
+Note that $\lim\limits_{h\to 0} \frac{f(c+h)-f(c)}{h} = \lim\limits_{h\to 0} \frac{f(c)f(h)-f(c)}{h} = f(c)\lim\limits_{h\to 0} \frac{f(h)-1}{h}$.\\ \pause
+This limit exists and therefore $f$ is differentiable on $\bR$.\\ \pause
+Also, $f'(c) = f(c)f'(0)$.
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\begin{block}{Try to Show}
+Given the hypothesis of the previous question and $f(0)=1$, show $f(x) = a^x$ for some $a\in\bR^+$.
+\end{block} \pause
+THIS IS PURELY FOR FUN
+\end{frame}
+
+\subsection{Optional : Q7}
+
+\begin{frame}
+\frametitle{Optional : Q7}
+\pause
+\begin{qsn}
+Let $f : (a,b) \to \bR$. Let $c\in (a,b)$.\\
+Show that the following are equivalent :
+\begin{enumerate}
+\item $f$ is differentiable at $c$
+\item $\exists \delta>0, \alpha \in \bR$ and $\epsilon_1 : (-\delta,\delta) \to \bR$ such that
+$$f(c+h) = f(c) + h\alpha + h\epsilon_1(h) \,\forall h \in (-\delta,\delta)$$
+and $\lim\limits_{h\to 0} \epsilon_1(h) = 0$.
+\item $\exists \alpha \in \bR$ such that $\lim\limits_{h\to 0} \left| \frac{f(c+h)-f(c)-h\alpha}{h} \right| = 0$
+\end{enumerate}
+\end{qsn}
+\end{frame}
+
+\begin{frame}
+\frametitle{Optional : Q7}
+\begin{thm}[Carath\'eodory Lemma]
+$f:(a,b) \to \bR$ is differentiable at $c\in (a,b)$ iff $\exists \delta>0, \alpha \in \bR$ and $\epsilon_1 : (-\delta,\delta) \to \bR$ such that $f(c+h) = f(c) + h\alpha + h\epsilon_1(h)$ and $\lim\limits_{h\to 0} \epsilon_1(h) = 0$. Then, $\alpha = f'(c)$.
+\end{thm}
+\pause
+\begin{proof}[Proof ($\Rightarrow$)]
+Let $\alpha = f'(c)$. For any $\delta$ small enough such that $(c-\delta,c+\delta) \subset (a,b)$, define \pause
+$$\epsilon_1 (h) = 
+\begin{cases}
+\frac{f(c+h) - f(c)}{h} - \alpha & h\neq 0\\
+0 & h=0
+\end{cases}
+$$\pause
+It is trivial to see $\lim\limits_{h\to 0} \epsilon_1(h) = \lim\limits_{h\to 0} \frac{f(c+h)-f(c)}{h} - \alpha = \alpha-\alpha = 0$
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Optional : Q7}
+\begin{proof}[Proof ($\Leftarrow$)]
+Let there be an $\epsilon_1, \delta$ and $\alpha$ as in the hypothesis.\\ \pause
+Then for $0<h<\delta$, $\epsilon_1(h) = \frac{f(c+h)-f(c)}{h} - \alpha$.\\ \pause
+Now since $\lim\limits_{h\to 0}\epsilon_1(h)$ exists, $\lim\limits_{h\to 0} \frac{f(c+h)-f(c)}{h}$ exists and $=\alpha$.\\ \pause
+Which is same as $f'(c) = \alpha$.
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Optional : Q7}
+We show $f$ is differentiable at $c$ iff $\exists \alpha \in \bR$ such that $\lim\limits_{h\to 0} \left| \frac{f(c+h)-f(c)-h\alpha}{h} \right| = 0$
+\pause
+\begin{proof}[Proof ($\Rightarrow$)]
+Let $f$ be differentiable at $c$. $\alpha := f'(c)$.\\ \pause
+$\lim\limits_{h\to 0} \frac{f(c+h)-f(c)}{h} = \alpha$ \\ \pause
+$\therefore \lim\limits_{h\to 0} \frac{f(c+h)-f(c)}{h} - \alpha = 0$ \\ \pause
+$\therefore \lim\limits_{h\to 0} \frac{f(c+h)-f(c)-h\alpha}{h} = 0$ \\ \pause
+$\therefore \lim\limits_{h\to 0} \left| \frac{f(c+h)-f(c)-h\alpha}{h} \right| = 0$ (why?) 
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Optional : Q7}
+\begin{proof}[Proof ($\Leftarrow$)]
+Let $\exists \alpha \in \bR$ as in the hypothesis.\\ \pause
+$\lim\limits_{h\to 0} \left| \frac{f(c+h)-f(c)-h\alpha}{h} \right| = 0$ \\ \pause
+$\therefore \lim\limits_{h\to 0} \frac{f(c+h)-f(c)-h\alpha}{h} = 0$ (why?) \\ \pause
+$\therefore \lim\limits_{h\to 0} \frac{f(c+h)-f(c)}{h} - \alpha = 0$ \\ \pause
+$\therefore \lim\limits_{h\to 0} \frac{f(c+h)-f(c)}{h} = \alpha$ 
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Explanation}
+Felt a bit hacky, didn't it? Formalize using this:
+\begin{thm}
+Let $f : (a,b) \to \bR$ and $c\in(a,b)$ then $\lim\limits_{x\to c} f(x) = 0$ iff $\lim\limits_{x\to c} |f(x)| = 0$
+\end{thm}
+\pause
+\begin{proof}
+Left as an exercise because it is indeed very simple.
+\end{proof}
+\end{frame}
+
+\subsection{Optional : Q10}
+
+\begin{frame}
+\frametitle{Optional : Q10}
+\pause
+\begin{qsn}
+Show that any continuous function $f : [0,1] \to [0,1]$ has a fixed point.
+\end{qsn}
+\pause
+Geez, but what is a fixed point ??
+\pause
+\begin{df}[Fixed Point]
+Let $f:X\to Y$ be a function. Then, $x\in X\cap Y$ is a fixed point of $f$ if $f(x)=x$. 
+\end{df}
+\pause
+Now this is a simple question, isn't it?
+\end{frame}
+
+\begin{frame}
+\frametitle{Optional : Q10}
+\begin{proof}
+\pause
+Define $g : [0,1] \to \bR$ by $g(x) = f(x)-x$ \\ \pause
+$g$ is continuous on $[0,1]$ (why?) \\ \pause
+$g(0) = f(0) \geq 0$ and $g(1) = f(1)-1 \leq 0$ \\ \pause
+If either $g(0)=0$ or $g(1)=0$, we are done. Else $g(0)>0>g(1)$ \\ \pause
+Now by the IVP (remember, $g$ was continuous), $\exists c \in (0,1)$ such that $g(c) = 0$.\\ \pause
+i.e. $\exists c \in (0,1)$ such that $f(c)=c$. This completes the proof.
+\end{proof}
+\end{frame}
+
+\section{Tutorial Sheet 2}
+
+\begin{frame}
+\frametitle{Tutorial Sheet 2}
+FINALLY, GODDAMNIT!
+\end{frame}
+
+\subsection{Q3 : Rolle's Theorem}
+
+\begin{frame}
+\frametitle{Q3 : Rolle's Theorem}
+\begin{qsn}
+Let $f : [a,b] \to \bR$ be continuous on $[a,b]$ and differentiable on $(a,b)$. If $f(a)f(b)<0$ and $f'(x)\neq 0 \, \forall x \in (a,b)$, then $\exists ! x_0 \in (a,b)$ such that $f(x_0)=0$.
+\end{qsn}
+\pause
+Note that we want to show :
+\pause 
+\begin{enumerate}
+\item Existence \pause
+\item Uniqueness
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q3 : Rolle's Theorem}
+\begin{proof}[Proof (Existence)]
+This is fairly straightforward. \\ \pause
+Remember, $f$ is continuous on $[a,b]$. \\ \pause
+There are 2 possible cases, namely $f(a)<0<f(b)$ and $f(a)>0>f(b)$. In both, \\ \pause
+the intermediate value property guarentees $\exists c \in (a,b)$ such that $f(c)=0$.
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q3 : Rolle's Theorem}
+\begin{proof}[Proof (Uniqueness)]
+\pause
+We shall prove via contradiction \\ \pause
+Assume $\exists x_1,x_2 \in (a,b)$ such that $f(x_1) = f(x_2) = 0$ \\ \pause
+WLOG $x_1<x_2$, then $f$ is continuous on $[x_1,x_2]$ and differentiable on $(x_1,x_2)$. \\ \pause
+Moreover $f(x_1) = f(x_2)$. So the hypothesis of Rolle's theorem is satisfied.\\ \pause
+Thus, $\exists x' \in (x_1,x_2) \subset (a,b)$ such that $f'(x')=0$.\\
+This is a contradiction and we are done.
+\end{proof}
+\end{frame}
+
+\subsection{Q5 : Langrange's Mean Value Theorem}
+
+\begin{frame}
+\frametitle{Q5 : Langrange's Mean Value Theorem}
+\begin{qsn}
+Show that $\forall a,b \in \bR$, $|\sin(a)-\sin(b)| \leq |a-b|$
+\end{qsn}
+\pause
+\begin{proof}
+For $a=b$, the claim is trivial. WLOG, assume $a<b$. \\ \pause
+$\sin$ is continuous and differentiable on $\bR$. (it is a ``nice'' function) \\ \pause
+Thus, it is continuous on $[a,b]$ and differentiable on $(a,b)$.\\
+The hypothesis of LMVT are satisfied.\\ \pause
+$\therefore \sin(a)-\sin(b) = \cos(c) (a-b)$ for some $c\in (a,b)$ \\ \pause
+$\therefore |\sin(a)-\sin(b)| = |\cos(c)| |a-b| \leq |a-b|$ and the proof is complete.
+\end{proof}
+\end{frame}
+
+\section{Something Extra}
+\begin{frame}
+\frametitle{Generalized Mean Value Theorem}
+\begin{thm}
+Let $f,g : [a,b] \to \bR$ be continuous on $[a,b]$ and differentiable on $(a,b)$. Then, $\exists c\in (a,b)$ such that $[g(b)-g(a)]f'(c) = [f(b)-f(a)]g'(c)$.
+\end{thm}
+\pause
+Try to show this using Rolle's Theorem \\ [1mm]
+\pause
+Note that LMVT is a special case where $g(x) = x$.
+\end{frame}
+
+\end{document}

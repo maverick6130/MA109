@@ -1,0 +1,10 @@
+\beamer@sectionintoc {1}{Tutorial Sheet 1}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Q13. (ii) : Continuity}{4}{0}{1}
+\beamer@subsectionintoc {1}{2}{Q15 : Differentiability}{6}{0}{1}
+\beamer@subsectionintoc {1}{3}{Q18 : Functional Equations}{10}{0}{1}
+\beamer@subsectionintoc {1}{4}{Optional : Q7}{13}{0}{1}
+\beamer@subsectionintoc {1}{5}{Optional : Q10}{19}{0}{1}
+\beamer@sectionintoc {2}{Tutorial Sheet 2}{21}{0}{2}
+\beamer@subsectionintoc {2}{1}{Q3 : Rolle's Theorem}{22}{0}{2}
+\beamer@subsectionintoc {2}{2}{Q5 : Langrange's Mean Value Theorem}{25}{0}{2}
+\beamer@sectionintoc {3}{Something Extra}{26}{0}{3}
