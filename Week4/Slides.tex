@@ -1,4 +1,4 @@
-\documentclass[aspectratio=169]{beamer}
+\documentclass[handout,aspectratio=169]{beamer}
 
 \usepackage{amsmath, amsthm, amssymb, esint}
 \usetheme{CambridgeUS}
@@ -71,7 +71,7 @@ If $c$ were $a$ or $b$, the $\epsilon-\delta$ definition would give such a $d$ f
 Now, for $d$, let $\epsilon = f(d)/2$, then $\exists \delta>0$ such that $(d-\delta,d+\delta)\subset (a,b)$ and $x\in(d-\delta,d+\delta) \implies |f(x)-f(d)|<\epsilon \implies f(x)-f(d)>-f(d)/2 \implies f(x)>f(d)/2$ \\ \pause
 Consider the partition $P:=\{a,d-\delta/2,d+\delta/2,b\}$ \\ \pause
 Here, $m_1\geqslant 0$, $m_2\geqslant f(d)/2>0$ and $m_3 \geqslant 0$ \\ \pause
-Hence, $L(P,f) = m_1(d-\delta-a)+m_2(2\delta) + m_3(b-d-\delta) \geqslant 2m_2\delta>0$ \\ \pause
+Hence, $L(P,f) = m_1(d-\delta/2-a)+m_2\delta + m_3(b-d-\delta/2) \geqslant m_2\delta>0$ \\ \pause
 Now, since $L(f) := \sup\limits_{P} L(P,f)$, by definition, $L(f)\geqslant L(P,f)>0$ \\ \pause
 Also, $f$ is Reimann integrable, hence $\int_a^b f(x)dx = L(f) > 0$ which is a contradiction.
 \end{proof}
@@ -135,7 +135,7 @@ We prove that if $f$ is Reimann integrable and $||P_n||\to 0$, then $R(f,P_n,t_n
 To show our claim, that $R(f,P_n,t_n) \to \int_a^b f(x)dx$, proceed by definition. \\ \pause
 Note that by definition of Reimann integrability, we have $\forall \epsilon>0 \,\,\exists \delta>0$ such that for any tagged partition $(P,t)$, $||P||<\delta \implies |R(f,P,t)-\int_a^b f(x)dx|<\epsilon$\\ \pause
 Now, given $\epsilon>0$, we obtain such a $\delta>0$\\ \pause
-Since $||P_n|| \to 0$, $\exists N\in \bN$ such that $n\geqslant N \implies 0<||P_n||<\delta$\\ \pause
+Since $||P_n|| \to 0$, $\exists N\in \bN$ such that $n\geqslant N \implies ||P_n||<\delta$\\ \pause
 Thus, by definition, $n\geqslant N \implies ||P_n||<\delta \implies |R(f,P_n,t_n)-\int_a^b f(x)dx|<\epsilon$ \\ \pause
 Which is exactly what we wanted to show!
 \end{proof}
