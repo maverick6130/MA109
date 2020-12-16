@@ -1,0 +1,286 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage{amsmath, amsthm, amssymb, esint}
+\usetheme{CambridgeUS}
+\usecolortheme{seahorse}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\title{MA109 Tutorial Session}
+\subtitle{Week 4}
+\author{Dhruv Arora}
+\institute{Sophomore, Dept of CSE}
+\date{\today}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{df}{Definition}
+\newtheorem{qsn}{Question}
+
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bR}{\mathbb{R}}
+
+\begin{document}
+
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{What's New this Wednesday}
+\tableofcontents
+\end{frame}
+
+\section{Tutorial Sheet 4}
+
+\subsection{Q2.(a) 0 Reimann Integral and 0 function}
+
+\begin{frame}
+\frametitle{Q2. (a)}
+\pause
+\begin{qsn}
+Let $f:[a,b]\to\bR$ be Reimann integrable.\pause
+\begin{enumerate}
+\item Given $f(x)\geqslant 0$, show that $\int_a^b f(x)dx \geqslant 0$\pause
+\item Given that $f$ is continuous and non negative, and that $\int_a^b f(x)dx = 0$, show that $f(x)=0 \,\,\forall x \in [a,b]$
+\end{enumerate}
+\end{qsn}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q2. (a)}
+\begin{proof}[Proof for (1)]
+\pause
+Consider an arbitrary partition $P = \{a = x_0<x_1<\dots < x_n = b\}$ of $[a,b]$\\ \pause
+Note that $m_i := \inf\limits_{x\in [x_{i-1},x_i]} f(x) \geqslant 0$ since $f(x)\geqslant 0 \,\,\forall x \in [x_{i-1},x_i]$ \\ \pause
+So that, $L(P,f) = \sum\limits_{i=1}^n m_i(x_i-x_{i-1}) \geqslant 0$ \\ \pause
+Now, since $L(f) := \sup\limits_{P} L(P,f)$, by definition, $L(f)\geqslant L(P,f) \geqslant 0$ \\ \pause
+Also, $f$ is Reimann integrable, hence Darboux Integrable \\ \pause
+$\int_a^b f(x)dx = L(f) \geqslant 0$
+\end{proof}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q2. (a)}
+\begin{proof}[Proof for (2)]
+\pause
+We shall prove this by contradiction. Assume that $\exists c\in [a,b]$ such that $f(c)>0$\\ \pause
+Claim : $\exists d\in(a,b)$ such that $f(d)>0$. \\ \pause
+If $c$ were $a$ or $b$, the $\epsilon-\delta$ definition would give such a $d$ for $\epsilon = f(c)$ (show!) \\ \pause
+Now, for $d$, let $\epsilon = f(d)/2$, then $\exists \delta>0$ such that $(d-\delta,d+\delta)\subset (a,b)$ and $x\in(d-\delta,d+\delta) \implies |f(x)-f(d)|<\epsilon \implies f(x)-f(d)>-f(d)/2 \implies f(x)>f(d)/2$ \\ \pause
+Consider the partition $P:=\{a,d-\delta/2,d+\delta/2,b\}$ \\ \pause
+Here, $m_1\geqslant 0$, $m_2\geqslant f(d)/2>0$ and $m_3 \geqslant 0$ \\ \pause
+Hence, $L(P,f) = m_1(d-\delta-a)+m_2(2\delta) + m_3(b-d-\delta) \geqslant 2m_2\delta>0$ \\ \pause
+Now, since $L(f) := \sup\limits_{P} L(P,f)$, by definition, $L(f)\geqslant L(P,f)>0$ \\ \pause
+Also, $f$ is Reimann integrable, hence $\int_a^b f(x)dx = L(f) > 0$ which is a contradiction.
+\end{proof}
+\end{frame}
+
+\subsection{Q2.(b) 0 Reimann Integral but non 0 function}
+
+\begin{frame}
+\frametitle{Q2. (b)}
+\pause
+\begin{qsn}
+Give an example of a Reimann integrable function, $f:[a,b]\to\bR$ such that $f(x)\geqslant 0\,\, \forall x\in [a,b]$, $\int_a^b f(x)dx = 0$ but $f(x)\neq 0$ for some $x \in [a,b]$
+\end{qsn}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q2. (b)}
+\pause
+Obviously, you cannot take $f$ to be any continuous function (why?) \\[1mm] \pause
+Consider the function $f:[0,1]\to\bR$ such that
+$$f(x) = 
+\begin{cases}
+0 & x\in [0,1)\\
+1 & x=1
+\end{cases}
+$$\pause
+$f$ indeed is Reimann integrable and $\int_0^1 f(x)dx=0$\\ \pause
+This can be shown as follows
+\end{frame}
+
+\begin{frame}
+\frametitle{Q2. (b)}
+\begin{proof}
+\pause
+We show that $f$ is Darboux integrable. \\ \pause
+Let $1>\delta>0$ and $P_\delta := \{0,1-\delta,1\}$ \\ \pause
+$L(P_\delta,f) = 0$ and $U(P_\delta,f) = \delta$ \\ \pause
+By definition, $L(f) \geqslant L(P_\delta,f) \geqslant 0$ \\ \pause
+And $U(f) := \inf\limits_P U(P,f) \leqslant \inf\limits_{0<\delta<1} U(P_\delta,f) = \inf\limits_{0<\delta<1} \delta = 0$\\ \pause
+We know that $L(f)\leqslant U(f)$ and we obtained that $L(f)\geqslant 0 \geqslant U(f)$ \\ \pause
+Hence, $L(f)=U(f)=0$ and thus $\int_0^1 f(x)dx = 0$
+\end{proof}
+\end{frame}
+
+\subsection{A Useful Theorem}
+\begin{frame}
+\frametitle{Approximate Reimann Sums}
+\pause
+\begin{thm}
+Let $f:[a,b]\to \bR$ be Reimann integrable. Let $P_n$ be a sequence of partitions such that $\lim\limits_{n\to\infty}||P_n||=0$ ( written more subtly as $||P_n|| \to 0$ ). Let $P_n = \{a=x_0<x_1<\dots x_m=b\}$ ( ofcourse $m$ depends on $n$ ), and $t_i \in [x_{i-1},x_i]$. Then
+$$\lim\limits_{n\to\infty} \sum\limits_{i=0}^m f(t_i)(x_i-x_{i-1}) = \int_a^b f(x)dx$$
+Indeed, the $P_n$ and $t_n$ combined are what are called {\bf tagged partitions}. And the theorem is another way of saying that if $||P_n||\to 0$, $R(f,P_n,t_n) \to \int_a^b f$
+\end{thm}
+\end{frame}
+
+\begin{frame}
+\frametitle{Proof of the Theorem}
+\begin{proof}
+\pause
+We prove that if $f$ is Reimann integrable and $||P_n||\to 0$, then $R(f,P_n,t_n)\to \int_a^b f(x)dx$\\ \pause
+To show our claim, that $R(f,P_n,t_n) \to \int_a^b f(x)dx$, proceed by definition. \\ \pause
+Note that by definition of Reimann integrability, we have $\forall \epsilon>0 \,\,\exists \delta>0$ such that for any tagged partition $(P,t)$, $||P||<\delta \implies |R(f,P,t)-\int_a^b f(x)dx|<\epsilon$\\ \pause
+Now, given $\epsilon>0$, we obtain such a $\delta>0$\\ \pause
+Since $||P_n|| \to 0$, $\exists N\in \bN$ such that $n\geqslant N \implies 0<||P_n||<\delta$\\ \pause
+Thus, by definition, $n\geqslant N \implies ||P_n||<\delta \implies |R(f,P_n,t_n)-\int_a^b f(x)dx|<\epsilon$ \\ \pause
+Which is exactly what we wanted to show!
+\end{proof}
+\end{frame}
+
+\subsection{Q3. (ii) : Approximate Reimann Sums}
+
+\begin{frame}
+\frametitle{Q3. (ii)}
+\pause
+\begin{qsn}
+Find the $\lim\limits_{n\to\infty} S_n$ where 
+$$S_n = \sum\limits_{i=1}^n \frac{n}{i^2+n^2}$$
+by formulating it as the limit of an appropriate Reimann sum
+\end{qsn}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q3. (ii)}
+\pause
+$$S_n = \frac{1}{n} \sum\limits_{i=1}^n \frac{1}{1+(i/n)^2} = \sum\limits_{i=1}^n \frac{1}{1+(i/n)^2}\left(\frac{i}{n}-\frac{i-1}{n}\right)$$ \pause
+Which is precisely $R(f,P_n,t_n)$ where \pause
+$$P_n = \{0=x_0<x_1<\dots<x_n=1\} : x_i = \frac{i}{n};t_i = \frac{i}{n}$$ \pause
+$$f:[0,1]\to \bR, f(x) = \frac{1}{1+x^2}$$ \pause
+Note that $||P_n|| = \frac{1}{n} \to 0$ and $f$ is Reimann integrable \\ \pause
+Thus, by the theorem, $$\lim\limits_{n\to\infty} S_n = \int_0^1 \frac{1}{1+x^2}dx = \arctan(1)-\arctan(0) = \frac{\pi}{4}$$ \pause
+Where the last part implicitly uses the Fundamental Theorem of Calculus II
+\end{frame}
+
+\subsection{Q3. (iv) : Approximate Reimann Sums}
+
+\begin{frame}
+\frametitle{Q3. (iv)}
+\pause
+\begin{qsn}
+Find the $\lim\limits_{n\to\infty} S_n$ where 
+$$S_n = \frac{1}{n}\sum\limits_{i=1}^n \cos\left(\frac{i\pi}{n}\right)$$
+by formulating it as the limit of an appropriate Reimann sum
+\end{qsn}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q3. (iv)}
+\pause
+$$S_n = \sum\limits_{i=1}^n \cos\left[\pi\left(\frac{i}{n}\right)\right] \left(\frac{i}{n}-\frac{i-1}{n}\right)$$ \pause
+Which is precisely $R(f,P_n,t_n)$ where \pause
+$$P_n = \{0=x_0<x_1<\dots<x_n=1\} : x_i = \frac{i}{n};t_i = \frac{i}{n}$$ \pause
+$$f:[0,1]\to \bR, f(x) = \cos(\pi x)$$ \pause
+Note that $||P_n|| = \frac{1}{n} \to 0$ and $f$ is Reimann integrable \\ \pause
+Thus, by the theorem, $$\lim\limits_{n\to\infty} S_n = \int_0^1 \cos(\pi x) dx = \frac{\sin(\pi)}{\pi} - \frac{\sin(0)}{\pi} = 0$$ \pause
+Where the last part implicitly uses the Fundamental Theorem of Calculus II
+\end{frame}
+
+\subsection{Another Useful Theorem}
+
+\begin{frame}
+\frametitle{Leibnitz Integral Rule}
+\pause
+Differentiate an integral whose limits are differentiable functions of the concerned variable.\\[1mm]\pause
+Note that here, the function involved is INDEPENDENT of the concerned variable.\pause
+\begin{thm}[Leibnitz Integral Rule]
+Let $f:\bR\to\bR$ be a continuous function. Let $a,b : \bR\to\bR$ be differentiable functions.\\
+Define :
+$$F(x) = \int_{a(x)}^{b(x)} f(t)dt$$
+Then $F$ is differentiable and $F'(x) = f(b(x))b'(x) - f(a(x))a'(x)$
+\end{thm}
+\end{frame}
+
+\begin{frame}
+\frametitle{Leibnitz Integral Rule}
+\begin{proof}
+\pause
+Define $$F_1(x) = \int_0^x f(t)dt$$\pause
+Since $f$ is continuous, $F_1$ is differentiable by Fundamental Theorem of Calculus I \\ \pause
+Also, $$F(x) = \int_{a(x)}^{b(x)} f(t)dt = \int_0^{b(x)} f(t)dt - \int_0^{a(x)} f(t) dt = F_1(b(x)) - F_1(a(x))$$ \pause
+Also, $b$ and $a$ are differentiable functions, hence $F$ is differentiable by the chain rule \pause
+$$F'(x) = F_1'(b(x))b'(x) - F_1'(a(x))a'(x) = f(b(x))b'(x) - f(a(x))a'(x)$$
+\end{proof}
+\end{frame}
+
+\subsection{Q4. (b). (i) : Apply the Leibnitz Rule}
+
+\begin{frame}
+\frametitle{Q4. (b). (i)}
+\pause
+\begin{qsn}
+Define
+$$F(x) = \int_{1}^{2x} \cos(t^2) dt$$
+Show that $F$ is differentiable and obtain $\displaystyle{\frac{dF}{dx}}$
+\end{qsn}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q4. (b). (i)}
+\pause
+Note that $\cos(x^2)$ is continous, and $1$ and $2x$ are both differentiable.\\[1mm]\pause
+The hypothesis of Leibnitz Integral Rule are satisfied, hence 
+$$\frac{dF}{dx} = F'(x) = 2\cos(4x^2) - 0cos(1) = 2\cos(4x^2)$$
+\end{frame}
+
+\subsection{Q4. (b). (ii) : Apply the Leibnitz Rule Again}
+
+\begin{frame}
+\frametitle{Q4. (b). (ii)}
+\pause
+\begin{qsn}
+Define
+$$F(x) = \int_{0}^{x^2} \cos(t) dt$$
+Show that $F$ is differentiable and obtain $\displaystyle{\frac{dF}{dx}}$
+\end{qsn}
+\end{frame}
+
+\begin{frame}
+\pause
+\frametitle{Q4. (b). (ii)}
+Note that $\cos(x)$ is continuous, and $0$ and $x^2$ are both differentiable.\\[1mm]\pause
+The hypothesis of Leibnitz Integral Rule are satisfied, hence 
+$$\frac{dF}{dx} = F'(x) = 2x\cos(x^2) - 0cos(0) = 2x\cos(x^2)$$
+\end{frame}
+
+\subsection{Q6 : FTC I but Calculate (:}
+
+\begin{frame}
+\frametitle{Q6}
+\pause
+\begin{qsn}
+Let $f:\bR \to \bR$ be continuous and $\lambda \in \bR \setminus \{0\}$.\\ \pause
+Define
+$$g(x) = \frac{1}{\lambda} \int_0^x f(t) \sin[\lambda(x-t)]dt$$ \pause
+Show that $g''(x) + \lambda^2 g(x) = f(x)$ and $g(0) = 0 = g'(0)$
+\end{qsn}
+\end{frame}
+
+\begin{frame}
+\frametitle{Q6}
+\begin{proof}[Sketch]
+\renewcommand{\qedsymbol}{}
+\pause
+Rearrange terms so that you do not have a function of $x$ inside the integral.\\ \pause
+(That is all there is to this question, rest is FTC I and plain calculation) \pause
+$$g(x) = \frac{1}{\lambda}\left[\sin(\lambda x)\int_0^x f(t)\cos(\lambda t)dt - \cos(\lambda x)\int_0^x f(t)\sin(\lambda t)dt\right]$$ \pause
+Now note that $f$ is continuous, so are $\cos(\lambda t)$ and $\sin(\lambda t)$, so that FTC I can be applied\\ \pause
+Also, $\cos(\lambda x)$ and $\sin(\lambda x)$ are differentiable, so that chain rule can be applied\\ \pause
+The rest is simple calculation. I leave that to you (:
+\end{proof}
+\end{frame}
+
+\end{document}
