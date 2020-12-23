@@ -1,0 +1,439 @@
+\documentclass[handout,aspectratio=169]{beamer}
+
+\usepackage{amsmath, amsthm, amssymb, esint}
+\usetheme{CambridgeUS}
+\usecolortheme{seahorse}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\title{MA109 Tutorial Session}
+\subtitle{Week 5}
+\author{Dhruv Arora}
+\institute{Sophomore, Dept of CSE}
+\date{\today}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{df}{Definition}
+\newtheorem{qsn}{Question}
+
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\norm}[1]{|#1|}
+\newcommand{\normtwo}[1]{||#1||}
+
+\begin{document}
+\begin{frame}
+	\titlepage
+	\begin{center}
+	{\tiny with most of the effort from}\\
+	{\small Harshit Gupta}\\
+	{\tiny Sophomore, Dept of CSE}
+	\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+\frametitle{What's New this Wednesday}
+\tableofcontents
+\end{frame}
+
+\section{Tutorial Sheet 5}
+
+\subsection{Q2. Contour Lines and Level Curves
+}
+
+\begin{frame}{Recap}
+	\uncover<2-> {
+	\begin{df}[Level Curve]
+		Let $f:\bR^2 \to \bR$ be a function and $c\in\bR$. Then the set $\{(x,y)\in\bR^2 | f(x,y)=c\}\subseteq \bR^2$ is called the level curve of $f$ corresponding to $c$.
+	\end{df}
+	}
+	\uncover<3-> {
+	\begin{df}[Contour Line]
+		Let $f:\bR^2 \to \bR$ be a function and $c\in\bR$. Then the set $\{(x,y,c)\in\bR^3 | f(x,y)=c\}\subseteq \bR^3$ is called the contour line of $f$ corresponding to $c$.
+	\end{df}
+	}
+	\uncover<4-> {
+	The difference is subtle. Simply stated, $\mathcal{C} = \mathcal{L}\times\{c\}$\\ 
+	}
+	\uncover<5-> {
+	Thus, I will only cover level curves in the following question.
+	}
+\end{frame}
+
+\begin{frame}{Caution}
+	\begin{block}{Note}
+	\uncover<2-> {
+	The ``curve" and ``line" in level curve and contour line is in not to be taken literally!
+	}
+	\uncover<3-> {
+	A level curve only needs to be a subset of $\bR^2$. Infact, you will see these mentioned as ``level sets" and ``contour plots" in different books.
+	}
+	\end{block}
+	\uncover<4-> {
+	\vspace*{5mm}
+	Consider the function $f(x,y)=0$. What is its level curve for $c=0$?
+	}
+\end{frame}
+
+\begin{frame}{Q2. (ii)}
+	\begin{qsn}
+        Describe the level curves and the contour lines for $f(x,y) = x^2+y^2$ corresponding to the values $c=-3,-2,-1,0,1,2,3,4$.
+	\end{qsn}
+    \uncover<2-> {
+    \vspace*{1mm}
+	 For $ c < 0$, the level curves are empty sets as $f(x,y) \geq 0 ~\forall (x,y) \in \mathbb{R}^2$\\[1mm]
+    }
+	\uncover<3-> {
+	For $c = 0,$ the level curve is just the singleton set $\{(0,\;0)\}\subset \mathbb{R}^2$\\[1mm]
+	}
+	\uncover<4-> {
+    For $c > 0,$ the level curve is the circle $\{(x,\;y)\in\mathbb{R}^2:x^2 + y^2 = c\}$\\[2mm]
+    }
+    \uncover<5-> {
+    For a complete solution, you should describe the level curve $\mathcal{L}$ explicitly!\\
+    }
+    \uncover<6-> {
+    For each value of $c$, you should also mention the contour line $\mathcal{C} = \mathcal{L}\times \{c\}$
+    }
+\end{frame}
+
+\begin{frame}{Q2. (iii)}
+    \begin{qsn}
+        Describe the level curves and the contour lines for $f(x,y) = xy$ corresponding to the values $c=-3,-2,-1,0,1,2,3,4$.
+	\end{qsn}
+	\uncover<2-> {
+	\vspace*{1mm}
+	 For $c < 0$, level curves are rectangular hyperbolas $xy = c$ in the xy-plane with branches in the second and fourth quadrant. \\[1mm]
+    }
+	\uncover<3-> {
+    For $c > 0$, level curves are rectangular hyperbolas $xy = c$ in the xy-plane with branches in the first and third quadrant. \\[1mm]
+    }
+	\uncover<4-> {
+    For $c = 0$, the corresponding level curves are precisely the union of the x-axis and the y-axis
+    }
+\end{frame}
+
+\subsection{Q4. Continuity of Function Combinations}
+
+\begin{frame}{Recap}
+\uncover<2-> {
+\begin{df}[Euclidean norm]
+Let $m\in \bN$. We define the euclidean distance between $x,y \in \bR^m$ by
+$$\normtwo{x-y} = \sqrt{\sum_{i=1}^m (x_i-y_i)^2}$$
+where $x=(x_1,x_2,\dots,x_m)$ and $y_m = (y_1,y_2,\dots,y_m)$
+\end{df}
+}
+\end{frame}
+
+\begin{frame}{Recap}
+\uncover<2-> {
+\begin{df}[Convergence in $\bR^m$]
+Let $(x_n)$ be a sequence in $\bR^m$. If $\exists x \in \bR^m$ such that $\forall \epsilon>0, \exists N \in \bN$ for which
+$$n\geq N \implies \normtwo{x_n-x}<\epsilon$$
+then we say $(x_n)$ converges to $x$ and write $x_n \to x$.
+\end{df}
+}
+\end{frame}
+
+\begin{frame}{\textit{Something Extra}}
+\uncover<2-> {
+\begin{df}[Metric Spaces]
+A set $X$ along with a function $d:X\times X \to \bR$ is called a metric space if the distance function $d$ satisfies the following :
+\begin{enumerate}
+\item $\forall x,y\in X, d(x,y)\geq 0$ and $d(x,y)=0 \Leftrightarrow x=y$
+\item $\forall x,y\in X, d(x,y) = d(y,x)$
+\item $\forall x,y,z\in X, d(x,y) + d(y,z) \geq d(z,x)$
+\end{enumerate}
+We will refer to $d(x,y) = d(y,x)$ as $\normtwo{x-y} = \normtwo{y-x}$
+\end{df}
+}
+\end{frame}
+
+\begin{frame}{\textit{Something Extra}}
+\uncover<2-> {
+\begin{df}[Convergence in General Metric Spaces]
+Let $(x_n)$ be a sequence in a metric space $X$. If $\exists x \in X$ such that $\forall \epsilon>0, \exists N \in \bN$ for which $$n\geq N \implies \normtwo{x_n-x}<\epsilon$$
+Then the sequence $(x_n)$ is said to converge to $x$ and we write $x_n \to x$\\
+\end{df}
+}
+\end{frame}
+
+\begin{frame}{Recap}
+\uncover<2-> {
+	The definition of continuity in functions from $\bR^2\to\bR$ or in general from any metric space $X\to\bR$ is parellel to that of functions from $\bR\to\bR$.\\
+}
+\uncover<3-> {
+    Thus, one intuitively expects that sequential continuity would also hold and be equivalent to the definition of continuity. This is indeed the case as we show.
+}
+\uncover<4-> {
+    \begin{thm}
+    Let $X$ be a metric space, $x\in X$ and $f:X\to\bR$ be a function. Then, $f$ is continuous at $x$ iff $~\forall$ sequences $(x_n)$ such that $x_n \to x$, $f(x_n) \to f(x)$.
+    \end{thm}
+}
+\end{frame}
+
+\begin{frame}{Recap}
+    \begin{proof}[Proof. (Forward)]
+    \uncover<2-> {
+    Let $f:X\to\bR$ be a continuous function and $(x_n)$ be a sequence in $X$ that converges to $x$.\\
+    }
+    \uncover<3-> {
+    Given $\epsilon>0$, $\exists \delta>0$ such that $\forall y$ for which $\normtwo{y-x}<\delta$, $\norm{f(y)-f(x)}<\epsilon$\\
+    }
+    \uncover<4-> {
+    Obtain this $\delta>0$, then $\exists N\in\bN$ such that $\forall n\geq N$, $\normtwo{x_n-x} < \delta$ (why?)\\
+    }
+    \uncover<5-> {
+    Thus, $\forall n\geq N$, $\norm{f(x_n)-f(x)}<\epsilon$ and so $f(x_n)\to f(x)$.
+    }
+    \end{proof}
+\end{frame}
+
+\begin{frame}{Recap}
+    \begin{proof}[Proof. (Backward)]
+    \uncover<2-> {
+    We will proceed via contrapositive. Let $f$ be a function that is not continuous at $x$.\\
+    }
+    \uncover<3-> {
+    Thus, $\exists \epsilon>0$ such that $\forall \delta>0$, $\exists y$ for which $\normtwo{y-x}<\delta$ but $\norm{f(y)-f(x)}\geq \epsilon$.\\
+    }
+    \uncover<4-> {
+    Construct a sequence $(x_n)$ by chosing $x_n$ to be such a $y$ for $\delta = \frac{1}{n}$.\\
+    }
+    \uncover<5-> {
+    It is easy to see $x_n \to x$ (why?). Also, $f(x_n) \not\to f(x)$ (why?)\\
+    }
+    \uncover<6-> {
+    Thus, we are done proving the contrapositive
+    }
+    \end{proof}
+\end{frame}
+
+\begin{frame}{Q4}
+	\begin{qsn}
+    Suppose $f, g : \mathbb{R} \to \mathbb{R}$ are continuous functions. Show that each of the following functions of
+    $(x, y) \in \mathbb{R}^2$ are continuous:
+    \begin{enumerate}
+    	\item $f(x) \pm g(y)$
+    	\item $f(x)g(y)$
+    	\item $max\{f(x), g(y)\}$
+    	\item $min\{f(x), g(y)\}$
+    \end{enumerate}
+    \end{qsn}
+\end{frame}
+
+\begin{frame}{Q4. (i)}
+\begin{proof}
+    \uncover<2-> {
+        Let $(x_n,y_n)$ be any sequence such that $(x_n,y_n) \to (x,y)$\\[1mm]
+    }
+    \uncover<3-> {
+        Thus, $x_n \to x$ and $y_n \to y$\\[1mm]
+    }
+    \uncover<4-> {
+        Furthermore, by continuity of $f$ and $g$, $f(x_n) \to f(x)$ and $g(y_n) \to g(y)$\\[1mm]
+    }
+    \uncover<5-> {
+        And by the theorem for sequences, $f(x_n)\pm g(y_n) \to f(x)\pm g(y)$\\[1mm]
+    }
+    \uncover<6-> {
+        Since $(x_n,y_n)$ was arbitrary, we are done.
+    }
+\end{proof}
+\end{frame}
+
+\begin{frame}{Q4. (ii)}
+\begin{proof}
+    \uncover<2-> {
+        Let $(x_n,y_n)$ be any sequence such that $(x_n,y_n) \to (x,y)$\\[1mm]
+    }
+    \uncover<3-> {
+        Thus, $x_n \to x$ and $y_n \to y$\\[1mm]
+    }
+    \uncover<4-> {
+        Furthermore, by continuity of $f$ and $g$, $f(x_n) \to f(x)$ and $g(y_n) \to g(y)$\\[1mm]
+    }
+    \uncover<5-> {
+        And by the theorem for sequences, $f(x_n)g(y_n) \to f(x)g(y)$\\[1mm]
+    }
+    \uncover<6-> {
+        Since $(x_n,y_n)$ was arbitrary, we are done.
+    }
+\end{proof}
+\end{frame}
+
+\begin{frame}{Q4. (iii)}
+\begin{proof}
+    \uncover<2-> {
+        Let $(x_n,y_n)$ be any sequence such that $(x_n,y_n) \to (x,y)$\\[1mm]
+    }
+    \uncover<3-> {
+        Thus, $x_n \to x$ and $y_n \to y$\\[1mm]
+    }
+    \uncover<4-> {
+        Furthermore, by continuity of $f$ and $g$, $f(x_n) \to f(x)$ and $g(y_n) \to g(y)$\\[1mm]
+    }
+    \uncover<5-> {
+        And by the theorem for sequences, $f(x_n)\pm g(y_n) \to f(x)\pm g(y)$\\[1mm]
+    }
+    \uncover<6-> {
+        Thus, we also have $\norm{f(x_n)-g(y_n)} \to \norm{f(x)-g(y)}$ (recall convergence theorem for $\norm{x_n}$)\\[1mm]
+    }
+    \uncover<7-> {
+        Now recall $\max\{a,b\} = \frac{(a+b)+|a-b|}{2}$. Hence $\max\{f(x_n),g(y_n)\} \to \max\{f(x),g(y)\}$\\[1mm]
+    }
+    \uncover<8-> {
+        Since $(x_n,y_n)$ was arbitrary, we are done.
+    }
+\end{proof}
+\end{frame}
+
+\begin{frame}{Q4. (iv)}
+\uncover<2-> {
+    Yeah, this is getting boring, let us skip!
+}
+\end{frame}
+
+\subsection{Q6. Partial Derivatives at 0}
+\begin{frame}{Q6. (ii)}
+    \begin{qsn}
+        Examine the function given by
+         $$f(x,y) = 
+         \begin{cases}
+         0 & \text{where } (x,y)=(0,0)\\
+         \frac{\sin^2(x+y)}{|x|+|y|} & \text{otherwise}
+         \end{cases}$$
+        for the existence of partial derivatives at $(0, 0)$.
+    \end{qsn}
+\end{frame}
+
+\begin{frame}{Q6. (ii)}
+    \uncover<2-> {
+	    $$f_x(0,\;0) = \displaystyle\lim_{h\to 0}\frac{f(0+h,\;0) - f(0,\;0)}{h} = \displaystyle\lim_{h\to 0}\left(\frac{\sin^2(h)}{h|h|}\right)$$
+	}
+    \uncover<3-> {
+    This limit does not exist (why?)\\[1mm]
+	}
+	\uncover<4-> {
+	Hint : Consider the two sequences with $n^{th}$ term given by $1/n$ and $-1/n$.\\[1mm] 
+	}
+    \uncover<5-> {
+    Observe that $f$ is symmetric in $x$ and $y$, hence $f_y(0,\;0)$ also does not exist.
+    }
+\end{frame}
+
+\subsection{Q8. Continuity $\nRightarrow$ existence of partial derivatives}
+\begin{frame}{Q8}
+    \begin{qsn}
+        Let $f(0,0) = 0$ and 
+        \begin{equation*}
+            f(x,y) = 
+            \begin{cases}
+                    x\sin(1/x) + y\sin(1/y) & if~x\neq 0,\; y \ne 0\\
+                    x \sin(1/x) & if~x\neq 0,\; y = 0\\
+                    y \sin(1/y) & if~x= 0,\; y \neq 0\\
+            \end{cases}
+        \end{equation*}
+        Show that none of the partial derivatives of $f$ exist at $(0, 0)$ although $f$ is continuous at $(0, 0)$.
+    \end{qsn}
+\end{frame}
+\begin{frame}{Q8}
+    \textbf{Claim} : $f$ is continuous at $(0,0)$\\
+    \pause
+    \begin{proof}
+    We only need to prove that $\lim\limits_{(x,y) \to (0,0)} f(x,y) = 0$\\
+    \pause
+    Given any $\epsilon > 0$, $\exists\delta > 0$ such that $0<|x|<\delta\implies |x\sin(1/x)| < \epsilon/2$. (why?)\\
+    \pause
+    Also note that $\norm{x}\leq\normtwo{(x,y)}$ and $\norm{y}\leq \normtwo{(x,y)}$\\
+    \pause
+    Let $0<\normtwo{(x,y)}<\delta$, then
+    \begin{itemize}
+        \item if $x=0$, $\norm{f(x,y)} = \norm{y\sin(1/y)}<\epsilon/2<\epsilon$
+        \item if $y=0$, $\norm{f(x,y)} = \norm{x\sin(1/x)}<\epsilon/2<\epsilon$
+        \item otherwise, $\norm{f(x,y)} = \norm{x\sin(1/x)+y\sin(1/y)} \leq \norm{x\sin(1/x)}+\norm{y\sin(1/y)} <\epsilon$
+    \end{itemize}
+    \pause
+     Clearly, $\norm{f(x,y)} < \epsilon$.\\
+    \pause
+    Thus, $0<\normtwo{(x,y)-(0,0)}<\delta \implies \norm{f(x,y)-f(0,0)}<\epsilon$ and the proof is complete.
+    \end{proof}
+\end{frame}
+
+\begin{frame}{Q8}
+	Now let us show that the partial derivatives don't exist.\\
+	\pause
+	$$f_x(0,\;0) = \lim_{h\to 0}\frac{f(0 + h,\; 0) - f(0,\;0)}{h} = \lim_{h\to 0}\sin\left(\frac{1}{h}\right)$$
+	\pause
+	Which we know, does not exist\\[1mm]
+	\pause
+	Again, note that $f$ is symmetric in $x$ and $y$. Hence, the other partial derivative does not exist.
+\end{frame}
+
+\subsection{Q10. Existence of every directional derivative $\nRightarrow$ differentiability}
+
+\begin{frame}{Q10}
+   \begin{qsn}
+       Let $f(x,y) = 0$ if $y=0$ and 
+       $$
+        f(x,y) = \frac{y}{|y|} \sqrt{x^2 + y^2}~if~y \ne 0
+       $$
+       Show that $f$ is continuous at $(0, 0)$, $D_uf(0, 0)$ exists for every vector u, yet f is not differentiable at $(0, 0)$.
+   \end{qsn}
+\end{frame}
+
+\begin{frame}{Q10}
+\begin{proof}[Proof. (Continuity)]
+    Continuity of $f$ follows easily from $\epsilon-\delta$ condition\\
+    \uncover<2->{
+	$|f(x, y) - f(0, 0)| = \left|\sqrt{x^2 + y^2}\right|$ for $y \neq 0$ and $|f(x, y) - f(0, 0)| = 0$ for $y = 0$\\
+	}
+	\uncover<3-> {
+	Thus, in general, we have that $|f(x, y) - f(0, 0)| \leq \left|\sqrt{x^2 + y^2}\right| = \normtwo{(x,y)}$ \\
+	}
+	\uncover<4-> {
+	Let $\delta := \epsilon$ and we are done.
+	}
+\end{proof}
+\end{frame}
+\begin{frame}{Q10}
+\begin{proof}[Proof. (Directional Derivatives)]
+    \uncover<2->{
+    For a unit vector $\textbf{u} := (u_1, u_2)$ and $t \neq 0,$
+    }
+    \uncover<3-> {
+	\[\frac{f\left(0+t u_{1}, 0+t u_{2}\right)-f(0,0)}{t} = \left\{
+		\begin{array}{c c}
+			0 & u_2 = 0\\
+			\frac{u_2}{|u_2|} & u_2 \neq 0
+		\end{array}
+	\right.\]
+	}
+	\uncover<4-> {
+	Hence, $\left(\mathbf{D_u} f\right)(0,0)$ exists for all $\textbf{u}.$ Thus, all directional derivatives exist
+    }
+\end{proof}
+\end{frame}
+\begin{frame}{Q10}
+    \uncover<2->{
+	For $f$ to be differentiable, we must check whether
+	\[\lim_{(h, k) \rightarrow(0,0)} \frac{f\left(0+h, 0+k\right)-f\left(0, 0\right)-f_x(0,0) h- f_y(0,0) k}{\sqrt{h^{2}+k^{2}}}=0\]
+	}
+	\uncover<3->{
+	For $(h,k) \neq (0,0),$ we have that
+	\[\frac{f\left(0+h, 0+k\right)-f\left(0, 0\right)-0 h- 1k}{\sqrt{h^{2}+k^{2}}} = \frac{k}{|k|} - \dfrac{k}{\sqrt{h^2 + k^2}}\]
+	}
+	\uncover<4-> {
+	Consider the sequence $((h_n,k_n))$ given by $h_n = k_n = \frac{1}{n}$.\\
+	Obviously $(h_n,k_n)\to(0,0)$ but
+	}
+	\uncover<5-> {
+	$$\frac{k_n}{|k_n|} - \dfrac{k_n}{\sqrt{h_n^2 + k_n^2}} = 1-\frac{1}{\sqrt{2}}$$
+	}
+	\uncover<6-> {
+	Which clearly does not converge to 0.
+	}
+\end{frame}
+\end{document}
