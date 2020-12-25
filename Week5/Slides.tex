@@ -1,10 +1,10 @@
-\documentclass[handout,aspectratio=169]{beamer}
+\documentclass[aspectratio=169]{beamer}
 
 \usepackage{amsmath, amsthm, amssymb, esint}
 \usetheme{CambridgeUS}
 \usecolortheme{seahorse}
 
-\renewcommand\qedsymbol{$\blacksquare$}
+\renewcommand\qedsymbol{$\spadesuit$}
 
 \title{MA109 Tutorial Session}
 \subtitle{Week 5}
@@ -20,6 +20,7 @@
 \newcommand{\bZ}{\mathbb{Z}}
 \newcommand{\bN}{\mathbb{N}}
 \newcommand{\bR}{\mathbb{R}}
+\newcommand{\bQ}{\mathbb{Q}}
 \newcommand{\norm}[1]{|#1|}
 \newcommand{\normtwo}[1]{||#1||}
 
@@ -72,8 +73,17 @@
 	}
 	\end{block}
 	\uncover<4-> {
-	\vspace*{5mm}
-	Consider the function $f(x,y)=0$. What is its level curve for $c=0$?
+	\vspace*{2mm}
+	Consider the function $f(x,y)=0$. What is its level curve for $c=0$?\\[1mm]
+	}
+	\uncover<5-> {
+	In fact, you can have level curves that are very hard to visualize. For example :
+	$$f(x,y) = 
+	\begin{cases}
+		1 & x \in \bQ \text{ and } y \in \bQ\\
+		0 & \text{otherwise}
+	\end{cases}$$
+	for $c=0$ or $1$
 	}
 \end{frame}
 
